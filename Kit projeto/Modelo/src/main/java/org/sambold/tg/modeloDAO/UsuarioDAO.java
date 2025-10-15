@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.sambold.tg.conexao.Conexao;
 import org.sambold.tg.tgmodeloBeans.Usuario;
 
@@ -13,7 +14,7 @@ public class UsuarioDAO {
 
     public List<Usuario> listarUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
-        String sql = "SELECT email, senha_hash, perfil, ativo FROM usuario";
+        String sql = "SELECT email, senha, perfil, curso FROM usuario";
 
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -21,11 +22,11 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 String email = rs.getString("email");
-                String senha = rs.getString("senha_hash");
-                String perfil = rs.getString("perfil");
-                boolean ativo = rs.getBoolean("ativo");
+                String senha = rs.getString("senha");
+                int perfil = rs.getInt("perfil");
+                String curso = rs.getString("curso");
 
-                Usuario usuario = new Usuario(email, senha, perfil, ativo);
+                Usuario usuario = new Usuario(email, senha, perfil, curso);
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
@@ -35,13 +36,13 @@ public class UsuarioDAO {
     }
 
     public boolean inserirUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuario (email, senha_hash, perfil, ativo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (email, senha, perfil, curso) VALUES (?, ?, ?, ?)";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, usuario.getEmail());
             stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getPerfil());
-            stmt.setBoolean(4, usuario.isAtivo());
+            stmt.setInt(3, usuario.getPerfil());
+            stmt.setString(4, usuario.getCurso());
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -49,4 +50,6 @@ public class UsuarioDAO {
             return false;
         }
     }
+
+    
 }

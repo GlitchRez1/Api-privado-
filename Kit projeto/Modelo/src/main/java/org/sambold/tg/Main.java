@@ -1,8 +1,9 @@
 package org.sambold.tg;
 
 import java.util.Scanner;
-import org.sambold.tg.tgmodeloBeans.Usuario;
+
 import org.sambold.tg.modeloDAO.UsuarioDAO;
+import org.sambold.tg.tgmodeloBeans.Usuario;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,12 +15,15 @@ public class Main {
         System.out.println("Digite sua senha:");
         String senha = scan.nextLine();
 
-        System.out.println("Qual o seu Perfil? (PROFESSOR ou ALUNO)");
-        String perfil = scan.nextLine();
+        System.out.println("Digite seu curso:");
+        String curso = scan.nextLine();
+        
+        int perfil = 1;  
+        
 
-        boolean isAtivo = true; // Você pode pedir input se quiser
+         // Você pode pedir input se quiser
 
-        Usuario usuario1 = new Usuario(email, senha, perfil, isAtivo);
+        Usuario usuario1 = new Usuario(email, senha, perfil, curso);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean sucesso = usuarioDAO.inserirUsuario(usuario1);
@@ -35,9 +39,4 @@ public class Main {
 }
 
 
-/* Anotações:
- * Tenho que fazer o scan para que o Usuário consiga colocar as informações via input
- *  Tenho que criar as classes Aluno e Usuário e seus construtores para que eu consigo chamar ao Usuário
- *  Tenho que adaptar a algumas coisas para o novo banco de Dados do Matheus
- *  Mexer com os arquivos DAO depois
- */
+

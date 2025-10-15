@@ -1,39 +1,31 @@
 package org.sambold.tg.tgmodeloBeans;
 
-
-
 public class Usuario {
     private String email;
     private String senha;
-    private String perfil;
-    private boolean ativo;
-    
-    
-    public Usuario (String email, String senha, String perfil, boolean ativo) {
-    this.email = email;
-    this.senha = senha;
-    this.perfil = perfil;
-    this.ativo = ativo;
+    private int perfil;
+    private String curso;
 
-}   
-
+    public Usuario(String email, String senha, int perfil, String curso) {
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
+        this.curso = curso;
+    }
 
     public String getEmail() {
-       return email;
+        return email;
     }
 
     public String getSenha() {
-       return senha;
+        return senha;
     }
 
-    public String getPerfil() {
-      return perfil;
+    public int getPerfil() {
+        return perfil;
     }
 
-
-    public boolean isAtivo() {
-    return ativo;   
-    } 
+    public String getCurso() {
+        return curso;
+    }
 }
-  
-
