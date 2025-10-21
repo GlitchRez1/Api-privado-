@@ -17,10 +17,10 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML private TextField emailField;
-    @FXML private PasswordField senhaField;
-    @FXML private Button loginBtn;
-    @FXML private Button cadastroBtn;
+@FXML private TextField emailField;
+@FXML private PasswordField passwordField; 
+@FXML private Button loginButton;          
+@FXML private Button cadastroBtn;
 
     private void trocarCena(ActionEvent event, String fxml, String titulo) {
         try {
@@ -44,7 +44,7 @@ public class LoginController {
     @FXML
     private void handleLoginAction(ActionEvent event) {
         String email = emailField != null ? emailField.getText() : "";
-        String senha = senhaField != null ? senhaField.getText() : "";
+        String senha = passwordField != null ? passwordField.getText() : "";
 
         if (email.isBlank() || senha.isBlank()) {
             System.err.println("Preencha e-mail e senha.");
