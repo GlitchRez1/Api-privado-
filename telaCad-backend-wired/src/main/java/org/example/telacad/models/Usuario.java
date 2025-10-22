@@ -1,6 +1,7 @@
 package org.example.telacad.models;
 
 public class Usuario {
+    
     private String email;
     private String nome;
     private String curso;
